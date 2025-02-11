@@ -6,13 +6,30 @@ import supertest from "supertest"
 describe('POST /api/course/:id/enroll', () => {
     let token: string
     let userId: string
+    let instructorId: string
     let courseId: string
 
     beforeEach(async () => {
-        const user = await UserTest.create()
-        token = user.token!
-        userId = user.id
-        const course = await CourseTest.create(userId)
+        const student = await UserTest.create({
+            username: "student",
+            email: "student@gmail.com",
+            password: "student",
+            role: "STUDENT"
+        })
+
+        token = student.token!
+        userId = student.id
+
+        const instructor = await UserTest.create({
+            username: "instructor",
+            email: "instructor@gmail.com",
+            password: "instructor",
+            role: "INSTRUCTOR"
+        })
+
+        instructorId = instructor.id
+
+        const course = await CourseTest.create(instructorId)
         courseId = course.id
     })
 
@@ -58,13 +75,13 @@ describe('POST /api/course/:id/enroll', () => {
     it('should reject enroll a course if user not found', async () => {
         const response = await supertest(app)
             .post(`/api/course/${courseId}/enroll`)
-            .set("Authorization", `Bearer ${token}`)
-            .send({ userId: "invalid" })
+            .set("Authorization", `Bearer ${token+1}`)
+            .send()
         
         logger.debug(response.body)
         expect(response.status).toBe(400)
         expect(response.body.errors).toBeDefined()
-    });
+    })
 })
 
 describe('GET /api/enrollments', () => {
@@ -163,7 +180,12 @@ describe('PATCH /api/enrollment/:id', () => {
     let enrollmentId: string
 
     beforeEach(async () => {
-        const user = await UserTest.create()
+        const user = await UserTest.create({
+            username: "admin",
+            email: "admin@gmail.com",
+            password: "admin",
+            role: "ADMIN"
+        })
         token = user.token!
         userId = user.id
         const course = await CourseTest.create(userId)
@@ -228,7 +250,12 @@ describe('DELETE /api/enrollment/:id', () => {
     let enrollmentId: string
 
     beforeEach(async () => {
-        const user = await UserTest.create()
+        const user = await UserTest.create({
+            username: "admin",
+            email: "admin@gmail.com",
+            password: "admin",
+            role: "ADMIN"
+        })
         token = user.token!
         userId = user.id
         const course = await CourseTest.create(userId)

@@ -7,6 +7,10 @@ import { User } from "@prisma/client"
 
 export class SubmissionService {
     static async create(user: User, assignmentId: string, request: CreateSubmissionRequest): Promise<SubmissionResponse> {
+        if (user.role !== "STUDENT" && user.role !== "ADMIN") {
+            throw new ResponseError(403, "Anda tidak berhak membuat submission")
+        }
+    
         const assignment = await prismaClient.assignment.findFirst({
             where: {
                 id: assignmentId,
@@ -21,22 +25,22 @@ export class SubmissionService {
                 }
             }
         })
-
-        if(!assignment) {
+    
+        if (!assignment) {
             throw new ResponseError(400, "Assignment tidak ditemukan atau Anda tidak terdaftar di kursus ini")
         }
-
+    
         const existingSubmission = await prismaClient.submission.findFirst({
             where: {
                 assignmentId: assignment.id,
                 userId: user.id
             }
         })
-
-        if(existingSubmission) {
+    
+        if (existingSubmission) {
             throw new ResponseError(400, "Submission sudah ada untuk assignment ini")
         }
-
+    
         const createRequest = Validation.validate(SubmissionValidation.CREATE, request)
         const createResponse = await prismaClient.submission.create({
             data: {
@@ -49,80 +53,143 @@ export class SubmissionService {
                 user: true
             }
         })
-
+    
         return toSubmissionResponse(createResponse)
     }
-
+    
     static async get(user: User, id: string): Promise<SubmissionResponse> {
         const submission = await prismaClient.submission.findFirst({
             where: {
                 id,
-                userId: user.id
+                OR: [
+                    { userId: user.id },
+                    {
+                        assignment: {
+                            lesson: {
+                                module: {
+                                    course: {
+                                        enrollments: {
+                                            some: { userId: user.id }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
             },
             include: {
-                assignment: true,
+                assignment: {
+                    include: {
+                        lesson: {
+                            include: {
+                                module: {
+                                    include: {
+                                        course: true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 user: true
             }
-        })
-
-        if(!submission) {
+        })        
+    
+        if (!submission) {
             throw new ResponseError(404, "Submission tidak ditemukan")
         }
-
+    
         return toSubmissionResponse(submission)
     }
-
+    
     static async getAll(user: User): Promise<SubmissionResponse[]> {
-        const submissions = await prismaClient.submission.findMany({
-            where: {
-                userId: user.id
-            },
-            include: {
-                assignment: true,
-                user: true
-            },
-            orderBy: {
-                submittedAt: 'desc'
-            }
-        })
-
+        let submissions
+    
+        if (user.role === "STUDENT") {
+            submissions = await prismaClient.submission.findMany({
+                where: { userId: user.id },
+                include: { assignment: true, user: true },
+                orderBy: { content: 'desc' }
+            })
+        } else if (user.role === "INSTRUCTOR") {
+            submissions = await prismaClient.submission.findMany({
+                where: {
+                    assignment: {
+                        lesson: { module: { course: { authorId: user.id } } }
+                    }
+                },
+                include: { assignment: true, user: true },
+                orderBy: { content: 'desc' }
+            })
+        } else if (user.role === "ADMIN") {
+            submissions = await prismaClient.submission.findMany({
+                include: { assignment: true, user: true },
+                orderBy: { content: 'desc' }
+            })
+        } else {
+            throw new ResponseError(403, "Anda tidak memiliki akses")
+        }
+    
         return submissions.map(toSubmissionResponse)
     }
 
-    static async getAllBySubmission(assignmentId: string): Promise<SubmissionResponse[]> {
+    static async getAllBySubmission(user: User, assignmentId: string): Promise<SubmissionResponse[]> {
+        if (user.role === 'STUDENT') {
+            throw new ResponseError(403, "Students are not authorized to view submissions")
+        }
+    
+        const whereCondition: any = { assignmentId }
+    
+        if (user.role === 'INSTRUCTOR') {
+            whereCondition.assignment = { authorId: user.id }
+        }
+    
         const submissions = await prismaClient.submission.findMany({
-            where: {
-                assignmentId
-            },
-            include: {
-                assignment: true,
-                user: true
-            },
-            orderBy: {
-                submittedAt: 'desc'
-            }
+            where: whereCondition,
+            include: { assignment: true, user: true },
+            orderBy: { submittedAt: 'desc' },
         })
-
+    
         return submissions.map(toSubmissionResponse)
     }
-
+    
+    
     static async update(user: User, id: string, request: UpdateSubmissionUpdateRequest): Promise<SubmissionResponse> {
+        if (user.role !== "INSTRUCTOR" && user.role !== "ADMIN") {
+            throw new ResponseError(403, "Anda tidak memiliki akses untuk memperbarui submission")
+        }
+    
         const submission = await prismaClient.submission.findFirst({
-            where: {
-                id,
-                userId: user.id
-            },
+            where: { id },
             include: {
-                assignment: true,
+                assignment: {
+                    include: {
+                        lesson: {
+                            include: {
+                                module: {
+                                    include: {
+                                        course: true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 user: true
             }
-        })
-
-        if(!submission) {
+        })        
+    
+        if (!submission) {
             throw new ResponseError(404, "Submission tidak ditemukan")
         }
-
+    
+        if (user.role === "INSTRUCTOR" && submission.assignment.lesson.module.course.authorId !== user.id) {
+            throw new ResponseError(403, "Anda tidak memiliki akses untuk memperbarui submission ini")
+        }
+    
         const updateRequest = Validation.validate(SubmissionValidation.UPDATE, request)
+    
         const updateResponse = await prismaClient.submission.update({
             where: { id },
             data: updateRequest,
@@ -131,34 +198,29 @@ export class SubmissionService {
                 user: true
             }
         })
-
+    
         return toSubmissionResponse(updateResponse)
     }
-
+    
     static async delete(user: User, id: string): Promise<SubmissionResponse> {
+        if (user.role !== "ADMIN") {
+            throw new ResponseError(403, "Hanya admin yang dapat menghapus submission")
+        }
+    
         const submission = await prismaClient.submission.findFirst({
-            where: {
-                id,
-                userId: user.id
-            },
-            include: {
-                assignment: true,
-                user: true
-            }
+            where: { id },
+            include: { assignment: true, user: true }
         })
-
-        if(!submission) {
+    
+        if (!submission) {
             throw new ResponseError(404, "Submission tidak ditemukan")
         }
-
+    
         const deleteResponse = await prismaClient.submission.delete({
             where: { id },
-            include: {
-                assignment: true,
-                user: true
-            }
+            include: { assignment: true, user: true }
         })
-
+    
         return toSubmissionResponse(deleteResponse)
-    }
+    }    
 }

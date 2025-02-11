@@ -46,7 +46,11 @@ export class UserService {
     }
 
     static async getAll(): Promise<UserResponse[]> {
-        const users = await prismaClient.user.findMany()
+        const users = await prismaClient.user.findMany({
+            orderBy: {
+                username: "asc"
+            }
+        })
         return users.map(toUserResponse)
     }
 

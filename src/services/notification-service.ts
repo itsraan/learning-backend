@@ -7,44 +7,122 @@ import { User } from "@prisma/client"
 
 export class NotificationService {
     static async create(user: User, request: CreateNotificationRequest): Promise<NotificationResponse> {
-        const createRequest = Validation.validate(NotificationValidation.CREATE, request)
-        const createResponse = await prismaClient.notification.create({
-            data: {
-                ...createRequest,
-                userId: user.id,
-                isRead: false
-            },
-            include: {
-                user: true
-            }
-        })
+        if (user.role === 'STUDENT') {
+            const createRequest = Validation.validate(NotificationValidation.CREATE, request)
+            const createResponse = await prismaClient.notification.create({
+                data: {
+                    ...createRequest,
+                    userId: user.id,
+                    isRead: false
+                },
+                include: {
+                    user: true
+                }
+            })
 
-        return toNotificationResponse(createResponse)
+            return toNotificationResponse(createResponse)
+        }
+
+        if (user.role === 'INSTRUCTOR' || user.role === 'ADMIN') {
+            const createRequest = Validation.validate(NotificationValidation.CREATE, request)
+            const createResponse = await prismaClient.notification.create({
+                data: {
+                    ...createRequest,
+                    userId: user.id, 
+                    isRead: false
+                },
+                include: {
+                    user: true
+                }
+            })
+
+            return toNotificationResponse(createResponse)
+        }
+
+        throw new ResponseError(403, "Role tidak valid untuk membuat notifikasi")
     }
 
     static async get(user: User, id: string): Promise<NotificationResponse> {
-        const notification = await prismaClient.notification.findFirst({
-            where: {
-                id,
-                userId: user.id
-            },
-            include: {
-                user: true
-            }
-        })
+        if (user.role === 'STUDENT') {
+            const notification = await prismaClient.notification.findFirst({
+                where: {
+                    id,
+                    userId: user.id
+                },
+                include: {
+                    user: true
+                }
+            })
 
-        if (!notification) {
-            throw new ResponseError(404, "Notifikasi tidak ditemukan")
+            if (!notification) {
+                throw new ResponseError(404, "Notifikasi tidak ditemukan")
+            }
+
+            return toNotificationResponse(notification)
         }
 
-        return toNotificationResponse(notification)
+        if (user.role === 'INSTRUCTOR' || user.role === 'ADMIN') {
+            const notification = await prismaClient.notification.findFirst({
+                where: {
+                    id
+                },
+                include: {
+                    user: true
+                }
+            })
+
+            if (!notification) {
+                throw new ResponseError(404, "Notifikasi tidak ditemukan")
+            }
+
+            return toNotificationResponse(notification)
+        }
+
+        throw new ResponseError(403, "Anda tidak memiliki akses untuk melihat notifikasi ini")
     }
 
     static async getAll(user: User): Promise<NotificationResponse[]> {
+        if (user.role === 'STUDENT') {
+            const notifications = await prismaClient.notification.findMany({
+                where: {
+                    userId: user.id
+                },
+                include: {
+                    user: true
+                },
+                orderBy: {
+                    createdAt: 'desc'
+                }
+            })
+
+            return notifications.map(toNotificationResponse)
+        }
+
+        if (user.role === 'INSTRUCTOR') {
+            const notifications = await prismaClient.notification.findMany({
+                where: {
+                    user: {
+                        enrollments: {
+                            some: {
+                                course: {
+                                    authorId: user.id
+                                }
+                            }
+                        }
+                    }
+                },
+                include: {
+                    user: true
+                },
+                orderBy: {
+                    createdAt: 'desc'
+                }
+            })
+
+            return notifications.map(toNotificationResponse)
+        }
+
         const notifications = await prismaClient.notification.findMany({
-            where: {
-                userId: user.id
-            },
             include: {
                 user: true
             },
@@ -57,9 +135,25 @@ export class NotificationService {
     }
 
     static async getUnread(user: User): Promise<NotificationResponse[]> {
+        if (user.role === 'STUDENT') {
+            const notifications = await prismaClient.notification.findMany({
+                where: {
+                    userId: user.id,
+                    isRead: false
+                },
+                include: {
+                    user: true
+                },
+                orderBy: {
+                    createdAt: 'desc'
+                }
+            })
+
+            return notifications.map(toNotificationResponse)
+        }
+
         const notifications = await prismaClient.notification.findMany({
             where: {
-                userId: user.id,
                 isRead: false
             },
             include: {
@@ -74,10 +168,34 @@ export class NotificationService {
     }
 
     static async markAsRead(user: User, id: string): Promise<NotificationResponse> {
+        if (user.role === 'STUDENT') {
+            const notification = await prismaClient.notification.findFirst({
+                where: {
+                    id,
+                    userId: user.id
+                }
+            })
+
+            if (!notification) {
+                throw new ResponseError(404, "Notifikasi tidak ditemukan")
+            }
+
+            const updateResponse = await prismaClient.notification.update({
+                where: { id },
+                data: {
+                    isRead: true
+                },
+                include: {
+                    user: true
+                }
+            })
+
+            return toNotificationResponse(updateResponse)
+        }
+
         const notification = await prismaClient.notification.findFirst({
             where: {
-                id,
-                userId: user.id
+                id
             }
         })
 
@@ -99,22 +217,61 @@ export class NotificationService {
     }
 
     static async markAllAsRead(user: User): Promise<void> {
-        await prismaClient.notification.updateMany({
-            where: {
-                userId: user.id,
-                isRead: false
-            },
-            data: {
-                isRead: true
-            }
-        })
+        if (user.role === 'STUDENT') {
+            await prismaClient.notification.updateMany({
+                where: {
+                    userId: user.id,
+                    isRead: false
+                },
+                data: {
+                    isRead: true
+                }
+            })
+        }
+
+        if (user.role === 'INSTRUCTOR' || user.role === 'ADMIN') {
+            await prismaClient.notification.updateMany({
+                where: {
+                    isRead: false
+                },
+                data: {
+                    isRead: true
+                }
+            })
+        }
     }
 
     static async update(user: User, id: string, request: UpdateNotficationRequest): Promise<NotificationResponse> {
+        if (user.role === 'STUDENT') {
+            const notification = await prismaClient.notification.findFirst({
+                where: {
+                    id,
+                    userId: user.id
+                },
+                include: {
+                    user: true
+                }
+            })
+
+            if (!notification) {
+                throw new ResponseError(404, "Notifikasi tidak ditemukan")
+            }
+
+            const updateRequest = Validation.validate(NotificationValidation.UPDATE, request)
+            const updateResponse = await prismaClient.notification.update({
+                where: { id },
+                data: updateRequest,
+                include: {
+                    user: true
+                }
+            })
+
+            return toNotificationResponse(updateResponse)
+        }
+
         const notification = await prismaClient.notification.findFirst({
             where: {
-                id,
-                userId: user.id
+                id
             },
             include: {
                 user: true
@@ -138,10 +295,34 @@ export class NotificationService {
     }
 
     static async delete(user: User, id: string): Promise<NotificationResponse> {
+        if (user.role === 'STUDENT') {
+            const notification = await prismaClient.notification.findFirst({
+                where: {
+                    id,
+                    userId: user.id
+                },
+                include: {
+                    user: true
+                }
+            })
+
+            if (!notification) {
+                throw new ResponseError(404, "Notifikasi tidak ditemukan")
+            }
+
+            const deleteResponse = await prismaClient.notification.delete({
+                where: { id },
+                include: {
+                    user: true
+                }
+            })
+
+            return toNotificationResponse(deleteResponse)
+        }
+
         const notification = await prismaClient.notification.findFirst({
             where: {
-                id,
-                userId: user.id
+                id
             },
             include: {
                 user: true
@@ -163,10 +344,20 @@ export class NotificationService {
     }
 
     static async deleteAll(user: User): Promise<void> {
-        await prismaClient.notification.deleteMany({
-            where: {
-                userId: user.id
-            }
-        })
+        if (user.role === 'STUDENT') {
+            await prismaClient.notification.deleteMany({
+                where: {
+                    userId: user.id
+                }
+            })
+        }
+
+        if (user.role === 'INSTRUCTOR' || user.role === 'ADMIN') {
+            await prismaClient.notification.deleteMany({
+                where: {
+                    userId: user.id
+                }
+            })
+        }
     }
 }

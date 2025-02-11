@@ -1,23 +1,33 @@
 import { prismaClient } from "../src/app/database"
-import { Course, Profile, User } from "@prisma/client"
+import { Course, Profile } from "@prisma/client"
 import { CourseLevel } from "@prisma/client"
+import { UserRole } from "@prisma/client"
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 
 export class UserTest {
     static async delete() {
         await prismaClient.user.deleteMany({
-            where: { email: "test@gmail.com" }
+            where: {email: { 
+                in: [
+                    "admin@gmail.com", 
+                    "instructor@gmail.com", 
+                    "student@gmail.com", 
+                    "test@gmail.com"
+                ] 
+            }}
         })
     }
 
-    static async create() {
+    static async create(data: Partial<{ username: string, email: string, password: string, role: UserRole }> = {}) {
+        const passwordToHash = data.password ? data.password : "test"
+        const hashedPassword = await bcrypt.hash(passwordToHash, 10)
         const user = await prismaClient.user.create({
             data: {
-                username: "test",
-                email: "test@gmail.com",
-                password: await bcrypt.hash("test", 10),
-                role: "INSTRUCTOR"
+                username: data.username || "test",
+                email: data.email || "test@gmail.com",
+                password: hashedPassword,
+                role: data.role || "INSTRUCTOR"
                 
             }
         })
@@ -297,3 +307,76 @@ export class AssignmentTest {
         return assignment
     }
 }
+
+export class SubmissionTest {
+    static async delete() {
+        await prismaClient.submission.deleteMany({
+            where: { user: { email: { in: [ "admin@gmail.com", "instructor@gmail.com", "student@gmail.com" ] } } }
+        })
+    }
+
+    static async create(assignmentId: string, userId: string, data: Partial<{content: string, grade: number}> = {}) {
+        const submission = await prismaClient.submission.create({
+            data: {
+                assignmentId,
+                userId,
+                content: data.content || "test",
+                grade: data.grade || 0
+            }
+        })
+        return submission
+    }
+
+    static async get(assignmentId: string, userId: string) {
+        const submission = await prismaClient.submission.findFirst({
+            where: {
+                assignmentId,
+                userId
+            }
+        })
+
+        if(!submission) {
+            throw new Error("Submission not found")
+        }
+
+        return submission
+    }
+}
+
+export class ProgressTest {
+    static async delete() {
+        await prismaClient.courseProgress.deleteMany({
+            where: { user: { email: { in: [ "admin@gmail.com", "instructor@gmail.com", "student@gmail.com" ] } } }
+        })
+    }
+
+    static async create(courseId: string, userId: string, data: Partial<{completedLessons: string, progress: number}> = {}) {
+        const progress = await prismaClient.courseProgress.create({
+            data: {
+                courseId,
+                userId,
+                completedLessons: data.completedLessons || "",
+                progress: data.progress || 0 
+            }
+        })
+
+        return progress
+    }
+
+    static async get(courseId: string, userId: string) {
+        const progress = await prismaClient.courseProgress.findFirst({
+            where: {
+                courseId,
+                userId
+            }
+        })
+
+        if(!progress) {
+            throw new Error("Progress not found")
+        }
+
+        return progress
+    }
+}
+
+

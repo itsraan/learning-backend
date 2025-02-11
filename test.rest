@@ -5,10 +5,10 @@ POST http://localhost:5000/api/register
 Content-Type: application/json
 
 {
-    "username": "student",
-    "email": "student@gmail.com",
-    "password": "student",
-    "role": "ADMIN"
+    "username": "instructor",
+    "email": "instructor@gmail.com",
+    "password": "instructor",
+    "role": "INSTRUCTOR"
 }
 
 ##### USER LOGIN #####
@@ -16,24 +16,24 @@ POST http://localhost:5000/api/login
 Content-Type: application/json
 
 {
-    "email": "student@gmail.com",
-    "password": "student"
+    "email": "instructor@gmail.com",
+    "password": "instructor"
 }
 
 ##### GET USER #####
 GET http://localhost:5000/api/users
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### GET ALL USER #####
 GET http://localhost:5000/api/allusers
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### UPDATE USER #####
 PATCH http://localhost:5000/api/users/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 {
     "username": "admin",
@@ -41,14 +41,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 }
 
 ##### DELETE USER #####
-DELETE http://localhost:5000/api/user/76ffbf09-b223-40ef-ade6-d25d3edc295f
+DELETE http://localhost:5000/api/user/0326a124-2ec8-4797-b16e-2bd4d714135e
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### LOGOUT USER #####
 DELETE http://localhost:5000/api/logout
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 ################## CRUD USER ##################
 
 
@@ -58,38 +58,43 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 ##### CREATE PROFILE #####
 POST http://localhost:5000/api/profile
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 {
-    "firstName": "student",
-    "lastName": "student",
-    "bio": "student",
+    "firstName": "instructor",
+    "lastName": "instructor",
+    "bio": "instructor",
     "dateOfBirth": "2003-04-29",
-    "location": "student"
+    "location": "instructor"
 }
 
 ##### GET PROFILE #####
-GET http://localhost:5000/api/profile/6c5c565d-53e7-4b41-8f21-ec6853398cd3
+GET http://localhost:5000/api/profile/04af1241-7ecd-4083-85a2-2b10d50edecd
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
+
+##### GET ALL PROFILE #####
+GET http://localhost:5000/api/profiles
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### UPDATE PROFILE #####
-PATCH http://localhost:5000/api/profile/99dcd233-25b6-4bcb-8414-dd6f87172a88
+PATCH http://localhost:5000/api/profile/04af1241-7ecd-4083-85a2-2b10d50edecd
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 {
-    "firstName": "test",
-    "lastName": "test",
-    "bio": "test",
+    "firstName": "coba",
+    "lastName": "coba",
+    "bio": "coba",
     "dateOfBirth": "2003-04-29",
-    "location": "test"
+    "location": "coba"
 }
 
 ##### DELETE PROFILE #####
 DELETE http://localhost:5000/api/profile/99dcd233-25b6-4bcb-8414-dd6f87172a88
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 ################## CRUD PROFILE ##################
 
 
@@ -99,7 +104,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 ##### CREATE COURSE #####
 POST http://localhost:5000/api/course
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 {
     "title": "test",
@@ -112,30 +117,30 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 ##### GET ALL COURSE #####
 GET http://localhost:5000/api/courses
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### GET COURSE #####
-GET http://localhost:5000/api/course/5492b06a-f5c1-4b08-9367-3ee32320811e
+GET http://localhost:5000/api/course/5c755ba0-110a-4efe-b575-3eb9df7ee618
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### UPDATE COURSE #####
-PATCH http://localhost:5000/api/course/5492b06a-f5c1-4b08-9367-3ee32320811e
+PATCH http://localhost:5000/api/course/7fbcbf14-447f-49f9-a52a-819a9cd1dcd4
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 {
-    "title": "test",
-    "description": "test",
-    "category": "test",
+    "title": "coba",
+    "description": "coba",
+    "category": "coba",
     "level": "BEGINNER",
     "price": 600
 }
 
 ##### DELETE COURSE #####
-DELETE http://localhost:5000/api/course/65e9c741-1b23-4cd3-9def-b497e393d610
+DELETE http://localhost:5000/api/course/5c755ba0-110a-4efe-b575-3eb9df7ee618
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 ################## CRUD COURSE ##################
 
 
@@ -143,9 +148,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 
 ################## CRUD MODULE ##################
 ##### CREATE MODULE #####
-POST http://localhost:5000/api/course/5492b06a-f5c1-4b08-9367-3ee32320811e/module
+POST http://localhost:5000/api/course/7fbcbf14-447f-49f9-a52a-819a9cd1dcd4/module
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 {
     "title": "test",
@@ -154,30 +159,30 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 }
 
 ##### GET ALL MODULE #####
-GET http://localhost:5000/api/course/5492b06a-f5c1-4b08-9367-3ee32320811e/module
+GET http://localhost:5000/api/course/7fbcbf14-447f-49f9-a52a-819a9cd1dcd4/module
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### GET MODULE #####
-GET http://localhost:5000/api/module/23e06b05-5221-49b0-8429-294ae72a513c
+GET http://localhost:5000/api/module/3ee792bc-4b33-4a97-a78c-a65c1fe767f0
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### UPDATE MODULE #####
-PATCH http://localhost:5000/api/module/23e06b05-5221-49b0-8429-294ae72a513c
+PATCH http://localhost:5000/api/module/3ee792bc-4b33-4a97-a78c-a65c1fe767f0
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 {
     "title": "coba",
-    "description": "test",
+    "description": "coba",
     "order": 1
 }
 
 ##### DELETE MODULE #####
-DELETE http://localhost:5000/api/module/23e06b05-5221-49b0-8429-294ae72a513c
+DELETE http://localhost:5000/api/module/fe2374b6-3575-407f-8ade-33a0bfce595a
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 ################## CRUD MODULE ##################
 
 
@@ -185,9 +190,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 
 ################## CRUD LESSON ##################
 ##### CREATE LESSON #####
-POST http://localhost:5000/api/module/23e06b05-5221-49b0-8429-294ae72a513c/lesson
+POST http://localhost:5000/api/module/3ee792bc-4b33-4a97-a78c-a65c1fe767f0/lesson
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 {
     "title": "test",
@@ -198,32 +203,32 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 }
 
 ##### GET ALL LESSON #####
-GET http://localhost:5000/api/module/23e06b05-5221-49b0-8429-294ae72a513c/lesson
+GET http://localhost:5000/api/module/3ee792bc-4b33-4a97-a78c-a65c1fe767f0/lesson
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### GET LESSON #####
-GET http://localhost:5000/api/lesson/9163117c-a83f-4575-bea4-7c20097b6fda
+GET http://localhost:5000/api/lesson/1b2d5f33-94bb-443d-bdae-f636a0dd317c
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### UPDATE LESSON #####
-PATCH http://localhost:5000/api/lesson/9163117c-a83f-4575-bea4-7c20097b6fda
+PATCH http://localhost:5000/api/lesson/1b2d5f33-94bb-443d-bdae-f636a0dd317c
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 {
-    "title": "test",
-    "content": "test",
-    "videoUrl": "test",
-    "resourceUrls": "test",
+    "title": "coba",
+    "content": "coba",
+    "videoUrl": "coba",
+    "resourceUrls": "coba",
     "order": 2
 }
 
 ##### DELETE LESSON #####
 DELETE http://localhost:5000/api/lesson/9163117c-a83f-4575-bea4-7c20097b6fda
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 ################## CRUD LESSON ##################
 
 
@@ -233,28 +238,28 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 ##### CREATE ENROLLMENT #####
 POST http://localhost:5000/api/course/5492b06a-f5c1-4b08-9367-3ee32320811e/enroll
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 
 ##### GET ALL ENROLLMENT #####
 GET http://localhost:5000/api/enrollments
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### GET ALL ENROLLMENT BYCOURSE #####
 GET http://localhost:5000/api/enrollments/bycourse/5492b06a-f5c1-4b08-9367-3ee32320811e
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### GET ENROLLMENT #####
 GET http://localhost:5000/api/enrollment/37361377-3295-419c-b514-ae461cc28f39
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### UPDATE ENROLLMENT #####
 PATCH http://localhost:5000/api/enrollment/147036b5-81b1-4c49-a837-85fe77c6921a
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 {
     "completedAt": "2003-04-29"
@@ -263,7 +268,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 ##### DELETE ENROLLMENT #####
 DELETE http://localhost:5000/api/enrollment/147036b5-81b1-4c49-a837-85fe77c6921a
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 ################## CRUD ENROLLMENT ##################
 
 
@@ -273,7 +278,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 ##### CREATE ASSIGNMENT #####
 POST http://localhost:5000/api/lesson/9163117c-a83f-4575-bea4-7c20097b6fda/assignment
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 {
     "title": "testtest",
@@ -286,17 +291,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 ##### GET ALL ASSIGNMENT #####
 GET http://localhost:5000/api/assignments
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### GET ASSIGNMENT #####
 GET http://localhost:5000/api/assignment/b7fc9538-8d05-44d4-9d34-f4e686945b61
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### UPDATE ASSIGNMENT #####
 PATCH http://localhost:5000/api/assignment/b7fc9538-8d05-44d4-9d34-f4e686945b61
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 {
     "title": "testtest",
@@ -308,12 +313,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 ##### DELETE ASSIGNMENT #####
 DELETE http://localhost:5000/api/assignment/b7fc9538-8d05-44d4-9d34-f4e686945b61
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### GET ALL BY LESSON ASSIGNMENT #####
 GET http://localhost:5000/api/assignments/bylesson/9163117c-a83f-4575-bea4-7c20097b6fda
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 ################## CRUD ASSIGNMENT ##################
 
 
@@ -323,7 +328,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 ##### CREATE SUBMISSION #####
 POST http://localhost:5000/api/assignment/b7fc9538-8d05-44d4-9d34-f4e686945b61/submission
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 {
     "content": "testtest"
@@ -333,17 +338,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 ##### GET ALL SUBMISSION #####
 GET http://localhost:5000/api/submissions
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### GET SUBMISSION #####
 GET http://localhost:5000/api/submission/751908f5-be39-44ae-b920-eb6c447bef47
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### UPDATE SUBMISSION #####
 PATCH http://localhost:5000/api/submission/751908f5-be39-44ae-b920-eb6c447bef47
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 {
     "title": "testtest",
@@ -355,12 +360,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 ##### DELETE SUBMISSION #####
 DELETE http://localhost:5000/api/submission/751908f5-be39-44ae-b920-eb6c447bef47
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### GET ALL BY LESSON SUBMISSION #####
 GET http://localhost:5000/api/submissions/byassignment/b7fc9538-8d05-44d4-9d34-f4e686945b61
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 ################## CRUD SUBMISSION ##################
 
 
@@ -370,7 +375,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 ##### CREATE PROGRESS #####
 POST http://localhost:5000/api/course/5492b06a-f5c1-4b08-9367-3ee32320811e/progress
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 {
     "completedLessons": "testtest",
@@ -381,17 +386,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 ##### GET ALL PROGRESS #####
 GET http://localhost:5000/api/progress
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### GET PROGRESS #####
 GET http://localhost:5000/api/progress/a2f7c031-e7d5-47ca-aabb-b88bd8f40097
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### UPDATE PROGRESS #####
 PATCH http://localhost:5000/api/progress/a2f7c031-e7d5-47ca-aabb-b88bd8f40097
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 {
     "completedLessons": "testtest",
@@ -401,12 +406,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 ##### DELETE PROGRESS #####
 DELETE http://localhost:5000/api/progress/a2f7c031-e7d5-47ca-aabb-b88bd8f40097
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### GET ALL BY LESSON PROGRESS #####
 GET http://localhost:5000/api/courses/5492b06a-f5c1-4b08-9367-3ee32320811e/progress
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 ################## CRUD PROGRESS ##################
 
 
@@ -416,7 +421,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 ##### CREATE NOTIFICATION #####
 POST http://localhost:5000/api/notifications
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 {
     "message": "testtest",
@@ -428,32 +433,32 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 ##### GET ALL NOTIFICATION #####
 GET http://localhost:5000/api/notifications
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### DELETE ALL NOTIFICATION #####
 DELETE http://localhost:5000/api/notifications
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### UNREAD NOTIFICATION #####
 GET http://localhost:5000/api/notifications/unread
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### READ ALL NOTIFICATION #####
 GET http://localhost:5000/api/notifications/read-all
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### GET NOTIFICATION #####
 GET http://localhost:5000/api/notifications/83093b4b-78f8-4262-9bb2-409d10de0fec
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### UPDATE NOTIFICATIOn #####
 PATCH http://localhost:5000/api/notifications/83093b4b-78f8-4262-9bb2-409d10de0fec
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 {
     "message": "testtest",
@@ -464,10 +469,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1L
 ##### DELETE PROGRESS #####
 DELETE http://localhost:5000/api/notifications/83093b4b-78f8-4262-9bb2-409d10de0fec
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 
 ##### CREATE MARK IS READ #####
 POST http://localhost:5000/api/notifications/83093b4b-78f8-4262-9bb2-409d10de0fec/read
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMTRiZjU1LWJmMTYtNGZlMC04Y2M5LWVhNTg3OTg0OWJmOCIsInVzZXJuYW1lIjoic3R1ZGVudCIsImVtYWlsIjoic3R1ZGVudEBnbWFpbC5jb20iLCJpYXQiOjE3Mzg0Nzc2NTIsImV4cCI6MTczODU2NDA1Mn0.OgEYIOc0w2ypJGE6XQYK5kx7OKbvlPWz9Bqy-BlwTDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwZTMyYWM5LTM4ODgtNDAzNS05YjE1LWI0NGFkYjhmZDBmMSIsInVzZXJuYW1lIjoiaW5zdHJ1Y3RvciIsImVtYWlsIjoiaW5zdHJ1Y3RvckBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4OTI3NjgsImV4cCI6MTczODk3OTE2OH0.Gn2gmhxvmJoCMHE_jnnqBJlHWz8c-5iIRF1gX6ciW_o
 ################## CRUD NOTIFICATION ##################

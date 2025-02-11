@@ -38,10 +38,9 @@ const upload = multer({
     storage: storage,
     fileFilter: fileFilter,
     limits: { 
-        fileSize: 5 * 1024 * 1024 // Batasan 5MB
+        fileSize: 1 * 1024 * 1024 
     }
 })
-
 
 export class ProfileService {
     static async create(user: User, request: CreateProfileRequest): Promise<ProfileResponse> {
@@ -83,15 +82,108 @@ export class ProfileService {
         return profile
     }
 
-    static async get(user: User, id: string): Promise<ProfileResponse> {
-        const profile = await this.checkProfileMustBeExists(user.id, id)
+    static async get(user: User, profileId: string): Promise<ProfileResponse> {
+        const profile = await prismaClient.profile.findUnique({
+            where: { id: profileId },
+            include: { user: true }
+        })
+    
+        if (!profile) {
+            throw new ResponseError(404, "Profile not found")
+        }
+    
+        if (user.role === 'STUDENT' && profile.userId !== user.id) {
+            throw new ResponseError(403, "STUDENT tidak dapat mengakses profil pengguna lain")
+        }
+    
+        if (user.role === 'INSTRUCTOR') {
+            if (profile.userId === user.id) {
+                return toProfileResponse(profile)
+            }
+            
+            const isStudentUnderInstructor = await prismaClient.enrollment.findFirst({
+                where: {
+                    userId: profile.userId,
+                    course: {
+                        authorId: user.id
+                    }
+                }
+            })
+    
+            if (!isStudentUnderInstructor) {
+                throw new ResponseError(403, "Anda tidak memiliki akses ke profil ini")
+            }
+        }
+    
+        if (user.role === 'ADMIN') {
+            return toProfileResponse(profile)
+        }
+    
         return toProfileResponse(profile)
-    }
+    }    
+
+    static async getAll(user: User): Promise<ProfileResponse[]> {
+        if (user.role === 'ADMIN') {
+            const profiles = await prismaClient.profile.findMany({
+                include: { user: true }
+            })
+            return profiles.map(toProfileResponse)
+        }
+    
+        if (user.role === 'INSTRUCTOR') {
+            const coursesTaught = await prismaClient.course.findMany({
+                where: { authorId: user.id },
+                select: { id: true }
+            })
+    
+            const courseIds = coursesTaught.map(course => course.id)
+    
+            const studentEnrollments = await prismaClient.enrollment.findMany({
+                where: { courseId: { in: courseIds } },
+                include: { user: { include: { profile: true } } }
+            })
+    
+            const studentProfiles = studentEnrollments
+                .map(enrollment => enrollment.user.profile)
+                .filter(profile => profile !== null)
+    
+            return studentProfiles.map(toProfileResponse)
+        }
+    
+        throw new ResponseError(403, "Akses ditolak")
+    }        
 
     static async update(user: User, request: UpdateProfileRequest): Promise<ProfileResponse> {
         const updateRequest = Validation.validate(ProfileValidation.UPDATE, request)
-        await this.checkProfileMustBeExists(user.id, updateRequest.id)
-
+        const profile = await prismaClient.profile.findUnique({
+            where: { id: updateRequest.id }
+        })
+    
+        if (!profile) {
+            throw new ResponseError(404, "Profile not found")
+        }
+    
+        if (user.role === 'STUDENT' && profile.userId !== user.id) {
+            throw new ResponseError(403, "STUDENT tidak dapat memperbarui profil pengguna lain")
+        }
+    
+        if (user.role === 'INSTRUCTOR') {
+            if (profile.userId !== user.id) {
+                const isStudentUnderInstructor = await prismaClient.enrollment.findFirst({
+                    where: {
+                        userId: profile.userId,
+                        course: {
+                            authorId: user.id
+                        }
+                    }
+                })
+    
+                if (!isStudentUnderInstructor) {
+                    throw new ResponseError(403, "INSTRUCTOR tidak dapat memperbarui profil ini")
+                }
+            }
+        }
+    
         const updateData = Object.keys(updateRequest).reduce((data, key) => {
             if (updateRequest[key] !== undefined) {
                 data[key] = updateRequest[key]
@@ -104,12 +196,27 @@ export class ProfileService {
             data: updateData,
         })
     
-
         return toProfileResponse(updateResponse)
-    }
+    }    
 
     static async delete(user: User, id: string): Promise<ProfileResponse> {
-        await this.checkProfileMustBeExists(user.id, id)
+        if (user.role === 'STUDENT' && user.id !== id) {
+            throw new ResponseError(403, "STUDENT tidak dapat menghapus profil pengguna lain");
+        }
+    
+        if (user.role === 'INSTRUCTOR' && user.id === id) {
+            throw new ResponseError(403, "INSTRUCTOR tidak dapat menghapus profil mereka sendiri");
+        }
+    
+        if (user.role === 'ADMIN') {
+            const profile = await prismaClient.profile.findFirst({
+                where: { id }
+            });
+    
+            if (!profile) {
+                throw new ResponseError(404, "Profile not found");
+            }
+        }
 
         const profile = await prismaClient.profile.findUnique({
             where: {
@@ -139,31 +246,53 @@ export class ProfileService {
         if (!file) {
             throw new ResponseError(400, 'No file uploaded')
         }
-
+    
         const profile = await prismaClient.profile.findUnique({
             where: { userId: user.id }
         })
-
+    
         if (!profile) {
             throw new ResponseError(404, 'Profile not found')
         }
-
+    
+        if (user.role === 'STUDENT' && profile.userId !== user.id) {
+            throw new ResponseError(403, 'STUDENT tidak dapat mengunggah gambar untuk profil pengguna lain')
+        }
+    
+        if (user.role === 'INSTRUCTOR') {
+            if (profile.userId !== user.id) {
+                const isStudentUnderInstructor = await prismaClient.enrollment.findFirst({
+                    where: {
+                        userId: profile.userId,
+                        course: {
+                            authorId: user.id
+                        }
+                    }
+                })
+    
+                if (!isStudentUnderInstructor) {
+                    throw new ResponseError(403, 'INSTRUCTOR tidak dapat mengunggah gambar untuk profil ini')
+                }
+            }
+        }
+    
         if (profile.profilePicture) {
             const oldFilePath = path.join(__dirname, '../../public/images', profile.profilePicture)
             if (fs.existsSync(oldFilePath)) {
                 fs.unlinkSync(oldFilePath)
             }
         }
-
+    
         const updatedProfile = await prismaClient.profile.update({
             where: { userId: user.id },
             data: { 
                 profilePicture: file.filename 
             }
         })
-
+    
         return toProfileResponse(updatedProfile)
     }
+    
 
     static uploadMiddleware = upload.single('profilePicture')
 }

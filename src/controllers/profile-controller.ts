@@ -28,6 +28,17 @@ export class ProfileController {
         }
     }
 
+    static async getAll(req: UserRequest, res: Response, next: NextFunction) {
+        try {
+            const response = await ProfileService.getAll(req.user!)
+            res.status(200).json({
+                data: response
+            })
+        } catch (error) {
+            next(error)
+        }
+    }
+
     static async update(req: UserRequest, res: Response, next: NextFunction) {
         try {
             const request: UpdateProfileRequest = req.body as UpdateProfileRequest

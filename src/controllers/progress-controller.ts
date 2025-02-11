@@ -43,7 +43,7 @@ export class ProgressController {
     static async getAllByCourse(req: UserRequest, res: Response, next: NextFunction) {
         try {
             const courseId = req.params.id
-            const response = await ProgressService.getAllByCourse(courseId)
+            const response = await ProgressService.getAllByCourse(courseId, req.user!)
             res.status(200).json({
                 data: response
             })

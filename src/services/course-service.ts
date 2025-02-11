@@ -9,6 +9,7 @@ import multer from "multer"
 import path from "path"
 import fs from "fs"
 import { Request } from "express"
+import { title } from "process"
 
 const storage = multer.diskStorage({
     destination: (req: Request, file: Express.Multer.File, cb: (error: Error | null, destination: string) => void) => {
@@ -38,7 +39,7 @@ const upload = multer({
     storage: storage,
     fileFilter: fileFilter,
     limits: { 
-        fileSize: 5 * 1024 * 1024 // Batasan 5MB
+        fileSize: 1 * 1024 * 1024 
     }
 })
 
@@ -99,7 +100,12 @@ export class CourseService {
 
     static async getAll(user: User): Promise<CourseResponse[]> {
         const query: any = {
-            include: { author: true }
+            include: { 
+                author: true 
+            },
+            orderBy: {
+                level: "asc"
+            }
         }
 
         if (user.role === "INSTRUCTOR") {
@@ -110,30 +116,43 @@ export class CourseService {
 
         const courses = await prismaClient.course.findMany(query)
         return courses.map(toCourseResponse)
-
     }
 
     static async update(user: User, id: string, request: UpdateCourseRequest): Promise<CourseResponse> {
         const updateRequest = Validation.validate(CourseValidation.UPDATE, request)
         await this.checkCourseMustBeExists(user.id, updateRequest.id, user.role)
-        if (user.role !== "ADMIN" && (user.role !== "INSTRUCTOR" || updateRequest.id !== id)) {
-            throw new ResponseError(403, "You don't have permission to update this course")
-        }
-
-        const updateData = Object.keys(updateRequest).reduce((data, key) => {
-            if(updateRequest[key] !== undefined) {
-                data[key] = updateRequest[key]
+    
+        if (user.role === "INSTRUCTOR") {
+            const course = await prismaClient.course.findFirst({
+                where: {
+                    id: updateRequest.id,
+                    authorId: user.id 
+                }
+            })
+    
+            if (!course) {
+                throw new ResponseError(403, "You don't have permission to update this course")
             }
-            return data
-        }, {} as any)
-
-        const updateResponse = await prismaClient.course.update({
-            where: { id },
-            data: updateData
-        })
-
-        return toCourseResponse(updateResponse)
-    }
+        }
+    
+        if (user.role === "ADMIN" || user.role === "INSTRUCTOR") {
+            const updateData = Object.keys(updateRequest).reduce((data, key) => {
+                if (updateRequest[key] !== undefined) {
+                    data[key] = updateRequest[key]
+                }
+                return data
+            }, {} as any)
+    
+            const updateResponse = await prismaClient.course.update({
+                where: { id },
+                data: updateData
+            })
+    
+            return toCourseResponse(updateResponse)
+        }
+    
+        throw new ResponseError(403, "You don't have permission to update this course")
+    }    
 
     static async delete(user: User, id: string): Promise<CourseResponse> {
         const course = await this.checkCourseMustBeExists(user.id, id, user.role)

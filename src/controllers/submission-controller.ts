@@ -43,7 +43,7 @@ export class SubmissionController {
     static async getAllBySubmission(req: UserRequest, res: Response, next: NextFunction) {
         try {
             const assignmentId = req.params.id
-            const response = await SubmissionService.getAllBySubmission(assignmentId)
+            const response = await SubmissionService.getAllBySubmission(req.user!, assignmentId)
             res.status(200).json({
                 data: response
             })

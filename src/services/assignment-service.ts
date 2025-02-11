@@ -50,12 +50,19 @@ export class AssignmentService {
 
     static async get(user: User, id: string): Promise<AssignmentResponse> {
         const assignment = await prismaClient.assignment.findFirst({
-            where: {
-                id,
-                authorId: user.id
-            },
+            where: { id },
             include: {
-                lesson: true,
+                lesson: {
+                    include: {
+                        module: {
+                            include: {
+                                course: {
+                                    select: { authorId: true }
+                                }
+                            }
+                        }
+                    }
+                },
                 author: true
             }
         })
@@ -64,57 +71,82 @@ export class AssignmentService {
             throw new ResponseError(404, "Assignment tidak ditemukan")
         }
     
-        return toAssignmentResponse(assignment)
+        if (user.role === "INSTRUCTOR" && assignment.authorId !== user.id) {
+            throw new ResponseError(403, "Anda tidak berhak mengakses assignment ini")
+        }
+    
+        return toAssignmentResponse(assignment)    
     }
     
     static async getAll(user: User): Promise<AssignmentResponse[]> {
         const assignments = await prismaClient.assignment.findMany({
-            where: {
-                authorId: user.id
-            },
             include: {
-                lesson: true,
+                lesson: {
+                    include: {
+                        module: {
+                            include: {
+                                course: {
+                                    select: { authorId: true }
+                                }
+                            }
+                        }
+                    }
+                },
                 author: true
             },
-            orderBy: {
-                dueDate: 'desc'
-            }
+            orderBy: { title: 'desc' }
         })
     
-        return assignments.map(toAssignmentResponse)
+        if (user.role === "INSTRUCTOR") {
+            return assignments
+                .filter(assignment => assignment.authorId === user.id)
+                .map(toAssignmentResponse)
+        }
+    
+        return assignments.map(toAssignmentResponse)    
     }
     
     static async getAllByLesson(lessonId: string): Promise<AssignmentResponse[]> {
         const assignments = await prismaClient.assignment.findMany({
-            where: {
-                lessonId
-            },
+            where: { lessonId },
             include: {
                 lesson: true,
                 author: true
             },
-            orderBy: {
-                dueDate: 'desc'
-            }
+            orderBy: { dueDate: 'desc' }
         })
     
-        return assignments.map(toAssignmentResponse)
+        return assignments.map(toAssignmentResponse)    
     }
     
     static async update(user: User, id: string, request: UpdateAssignmentRequest): Promise<AssignmentResponse> {
         const assignment = await prismaClient.assignment.findFirst({
-            where: {
-                id,
-                authorId: user.id
-            },
+            where: { id },
             include: {
-                lesson: true,
+                lesson: {
+                    include: {
+                        module: {
+                            include: {
+                                course: {
+                                    select: { authorId: true }
+                                }
+                            }
+                        }
+                    }
+                },
                 author: true
             }
         })
     
         if (!assignment) {
             throw new ResponseError(404, "Assignment tidak ditemukan")
+        }
+    
+        if (
+            user.role === "STUDENT" ||
+            (user.role === "INSTRUCTOR" && assignment.lesson.module.course.authorId !== user.id)
+        ) {
+            throw new ResponseError(403, "Anda tidak berhak mengubah assignment ini")
         }
     
         const updateRequest = Validation.validate(AssignmentValidation.UPDATE, request)
@@ -128,23 +160,37 @@ export class AssignmentService {
             }
         })
     
-        return toAssignmentResponse(updateResponse)
+        return toAssignmentResponse(updateResponse)    
     }
     
     static async delete(user: User, id: string): Promise<AssignmentResponse> {
         const assignment = await prismaClient.assignment.findFirst({
-            where: {
-                id,
-                authorId: user.id
-            },
+            where: { id },
             include: {
-                lesson: true,
+                lesson: {
+                    include: {
+                        module: {
+                            include: {
+                                course: {
+                                    select: { authorId: true }
+                                }
+                            }
+                        }
+                    }
+                },
                 author: true
             }
         })
     
         if (!assignment) {
             throw new ResponseError(404, "Assignment tidak ditemukan")
+        }
+    
+        if (
+            user.role === "STUDENT" ||
+            (user.role === "INSTRUCTOR" && assignment.lesson.module.course.authorId !== user.id)
+        ) {
+            throw new ResponseError(403, "Anda tidak berhak mengubah assignment ini")
         }
     
         const deleteResponse = await prismaClient.assignment.delete({
@@ -155,6 +201,6 @@ export class AssignmentService {
             }
         })
     
-        return toAssignmentResponse(deleteResponse)
+        return toAssignmentResponse(deleteResponse)    
     }
 }

@@ -35,6 +35,9 @@ privateApi.route("/api/logout")
 // Profile routes
 privateApi.route("/api/profile/upload-picture")
     .post(authorizeRole(["STUDENT", "INSTRUCTOR", "ADMIN"]), ProfileService.uploadMiddleware, ProfileController.uploadPicture)
+
+privateApi.route("/api/profiles")
+    .get(authorizeRole(["INSTRUCTOR", "ADMIN"]), ProfileController.getAll)
     
 privateApi.route("/api/profile/:id?")
     .post(authorizeRole(["STUDENT", "INSTRUCTOR", "ADMIN"]), ProfileController.create)
@@ -90,8 +93,8 @@ privateApi.route("/api/enrollments")
 
 privateApi.route("/api/enrollment/:id")
     .get(authorizeRole(["STUDENT", "INSTRUCTOR", "ADMIN"]), EnrollmentController.get)
-    .patch(authorizeRole(["STUDENT", "INSTRUCTOR", "ADMIN"]), EnrollmentController.update)
-    .delete(authorizeRole(["STUDENT", "INSTRUCTOR", "ADMIN"]), EnrollmentController.delete)
+    .patch(authorizeRole(["","ADMIN"]), EnrollmentController.update)
+    .delete(authorizeRole(["", "ADMIN"]), EnrollmentController.delete)
 
 // Assignment routes
 privateApi.route("/api/lesson/:id/assignment")

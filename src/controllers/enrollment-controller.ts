@@ -42,7 +42,7 @@ export class EnrollmentController {
     static async getAllByCourse(req: UserRequest, res: Response, next: NextFunction) {
         try {
             const courseId = req.params.id
-            const response = await EnrollmentService.getAllByCourse(courseId)
+            const response = await EnrollmentService.getAllByCourse(courseId, req.user!)
             res.status(200).json({
                 data: response
             })

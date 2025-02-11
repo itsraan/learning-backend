@@ -73,6 +73,16 @@ export class ModuleService {
     }
 
     static async getAll(user: User, courseId: string): Promise<ModuleResponse[]> {
+        const course = await prismaClient.course.findUnique({
+            where: {
+                id: courseId
+            }
+        })
+
+        if (!course) {
+            throw new ResponseError(403, "Course not found")
+        }
+
         const modules = await prismaClient.module.findMany({
             where: { courseId },
             include: {

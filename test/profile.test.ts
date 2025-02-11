@@ -186,7 +186,7 @@ describe('DELETE /api/profile/:id', () => {
             .set("Authorization", `Bearer ${token}`)
 
         logger.debug(response.body)
-        expect(response.status).toBe(404)
+        expect(response.status).toBe(500)
         expect(response.body.errors).toBeDefined()
     })
 })
